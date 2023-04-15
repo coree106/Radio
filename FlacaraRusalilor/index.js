@@ -35,3 +35,26 @@ $(document).ready(function() {
 
 });
 
+/*emisiuni*/
+const slideLeft = document.querySelector(".left-slides");
+const slideRight = document.querySelector(".right-slides");
+const totalSlides = slideLeft.querySelector("div").lenght;
+
+var currentSlide = 0;
+
+slideRight.style.transform = `
+     translateY(-${(totalSlides - 1) * 100}%)`;
+
+function sliding() {
+    currentSlide++;
+    if (currentSlide > totalSlides - 1)
+        currentSlide = 0;
+
+    slideRight.style.transform = `
+        translateY(-${(totalSlides - 1 - currentSlide) * 100}%)`;
+    slideLeft.style.transform = `
+        translateY(-${currentSlide * 100}%)`;
+}
+
+setInterval(sliding, 3000);
+
