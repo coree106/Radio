@@ -1,60 +1,32 @@
-var util = {
-    mobileMenu() {
-        $("#nav").toggleClass("nav-visible");
-    },
-    windowResize() {
-        if ($(window).width() > 800) {
-            $("#nav").removeClass("nav-visible");
-        }
-    },
-    scrollEvent() {
-        var scrollPosition = $(document).scrollTop();
-
-        $.each(util.scrollMenuIds, function(i) {
-            var link = util.scrollMenuIds[i],
-                container = $(link).attr("href"),
-                containerOffset = $(container).offset().top,
-                containerHeight = $(container).outerHeight(),
-                containerBottom = containerOffset + containerHeight;
-
-            if (scrollPosition < containerBottom - 20 && scrollPosition >= containerOffset - 20) {
-                $(link).addClass("active");
-            } else {
-                $(link).removeClass("active");
-            }
-        });
-    }
-};
-
-$(document).ready(function() {
-
-    util.scrollMenuIds = $("a.nav-link[href]");
-    $("#menu").click(util.mobileMenu);
-    $(window).resize(util.windowResize);
-    $(document).scroll(util.scrollEvent);
-
-});
-
 /*emisiuni*/
-const slideLeft = document.querySelector(".left-slides");
-const slideRight = document.querySelector(".right-slides");
-const totalSlides = slideLeft.querySelector("div").lenght;
+const sliderContainer = document.querySelector('.slider-container')
+const slideRight = document.querySelector('.right-slide')
+const slideLeft = document.querySelector('.left-slide')
+const upButton = document.querySelector('.up-button')
+const downButton = document.querySelector('.down-button')
+slidesLength = slideRight.querySelector('div').length
 
-var currentSlide = 0;
+let actveSlideIndex = 0
 
-slideRight.style.transform = `
-     translateY(-${(totalSlides - 1) * 100}%)`;
+slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`
 
-function sliding() {
-    currentSlide++;
-    if (currentSlide > totalSlides - 1)
-        currentSlide = 0;
+upButton.addEventListener('click', () => changeSlide('up'))
+downButton.addEventListener('click', () => changeSlide('down'))
 
-    slideRight.style.transform = `
-        translateY(-${(totalSlides - 1 - currentSlide) * 100}%)`;
-    slideLeft.style.transform = `
-        translateY(-${currentSlide * 100}%)`;
+const changeSlide = (direction) => {
+    const sliderHeight  = sliderContainer.clientHeight
+    if(direction === 'up'){
+        actveSlideIndex++
+        if(actveSlideIndex > slidesLength -1){
+            actveSlideIndex = 0
+        }
+    }else if(direction === 'down'){
+        actveSlideIndex--
+        if(actveSlideIndex < 0){
+            actveSlideIndex = slidesLength - 1
+        }
+    }
+    slideRight.style.transform = `translateY(-${actveSlideIndex * sliderHeight}px)`
+    slideLeft.style.transform = `translateY(${actveSlideIndex * sliderHeight}px)`
+
 }
-
-setInterval(sliding, 3000);
-

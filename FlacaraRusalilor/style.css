@@ -517,68 +517,85 @@ a:hover {
     transform: translateY(10px);
 }
 /* sectiunea emisiuni*/
-.carousel{
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
+.slider-container{
     position: relative;
-    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
 }
-.carousel p{
-    color: #fff;
-}
-.left-slides{
-    position: absolute;
-    left: 0;
-    top: 0;
+.left-slide{
     height: 100%;
-    width: 40%;
-    transition: all 0.75s ease-in-out;
+    width: 35%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.5s ease-in-out;
 }
-.left-slides div{
+.left-slide > div{
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
     align-items: center;
-    background-color: rgb(0, 95, 96);
+    justify-content: center;
+    color: #FFFFFF;
 }
-.left-slides h3{
-    font-size: 32px;
-    margin-bottom: 2.5%;
-}
-.left-slides p{
-    font-size: 16px;
+.left-slide p{
+    color: #FFFFFF;
     margin-left: 18px;
     margin-right: 18px;
 }
-.right-slides{
-    position: absolute;
-    left: 40%;
-    top: 0;
-    height: 100%;
-    width: 60%;
-    transition: all 0.75s ease-in-out;
+.left-slide h1{
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-top: -30px;
 }
-.right-slides div{
-    height: 100%;
-    width: 100%;
+.right-slide > div{
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
 }
-.right-slides div:nth-child(1){
-    background-image: url("img/books.jpg");
+.right-slide{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 35%;
+    width: 65%;
+    transition: transform 0.5s ease-in-out;
 }
-.right-slides div:nth-child(2){
-    background-image: url("img/bible2.jpg");
+button{
+    background-color: #fff;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 15px;
 }
-.right-slides div:nth-child(3){
-    background-image: url("img/studiu.jpg");
+button:hover{
+    color: #222;
+}
+button:focus{
+    outline: none;
+}
+.slider-container .action-buttons button{
+    position: absolute;
+    left: 35%;
+    top: 50%;
+    z-index: 100;
+}
+.slider-container .action-buttons .down-button{
+    transform: translateX(-100%);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.slider-container .action-buttons .up-button{
+    transform: translateY(-100%);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 /* sectiunea echipa*/
-.box{
+.container{
     max-width: 1170px;
     margin: auto;
     padding: 0 15px;
